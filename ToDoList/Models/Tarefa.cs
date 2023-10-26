@@ -4,8 +4,8 @@
     {
 
         public int Id { get; set; }
-        public string Task { get; set; } = string.Empty;
-        public string Date { get; set; } = string.Empty;
+        public string tarefa { get; set; } = string.Empty;
+        public string conclusao { get; set; } = string.Empty;
 
     }
 }
