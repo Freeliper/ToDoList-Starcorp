@@ -41,6 +41,25 @@ namespace ToDoList.Controllers
             return Ok(tarefa);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Tarefa>>> CreateTarefa(Tarefa tarefa)
+        {
+            IEnumerable<Tarefa> tarefas = await _tarefaInterface.CreateTarefa(tarefa);
 
+            return Ok(tarefas);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<IEnumerable<Tarefa>>> UpdateTarefa(Tarefa tarefa)
+        {
+            Tarefa registro = await _tarefaInterface.GetTarefaById(tarefa.Id);
+
+            if(registro == null)
+            {
+                return NotFound("Registro não localizado!");
+            }
+            IEnumerable<Tarefa> tarefas = await _tarefaInterface.UpdateTarefa(tarefa);
+            return Ok(tarefas);
+        }
     }
 }

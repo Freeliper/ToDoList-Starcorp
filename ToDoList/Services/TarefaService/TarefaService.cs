@@ -15,16 +15,22 @@ namespace ToDoList.Services.TarefaService
             getConnection = _configuration.GetConnectionString("DefaultConnection");
         }
 
-        public Task<IEnumerable<Tarefa>> CreateTarefa(Tarefa tarefa)
+        public async Task<IEnumerable<Tarefa>> CreateTarefa(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            using(var con= new SqlConnection(getConnection))
+            {
+                var sql = "insert into Tarefas (tarefa, conclusao) values (@tarefa, @conclusao)";
+                await con.ExecuteAsync(sql, tarefa);
+
+                return await con.QueryAsync<Tarefa>("select * from Tarefas");
+            }
         }
 
         public async Task<IEnumerable<Tarefa>> GetAllTarefas()
         {
             using(var con = new SqlConnection(getConnection))
             {
-                var sql = "SELECT * FROM Tarefas ORDER BY conclusao ASC";
+                var sql = "SELECT * FROM Tarefas WHERE concluida = 'false' ORDER BY conclusao ASC";
                 return await con.QueryAsync<Tarefa>(sql);
             }
         }
@@ -38,9 +44,15 @@ namespace ToDoList.Services.TarefaService
             }
         }
 
-        public Task<IEnumerable<Tarefa>> UpdateTarefa(Tarefa tarefa)
+        public async Task<IEnumerable<Tarefa>> UpdateTarefa(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            using( var con= new SqlConnection(getConnection))
+            {
+                var sql = "update tarefas set concluida = @concluida where id = @id";
+                await con.ExecuteAsync(sql, tarefa);
+
+                return await con.QueryAsync<Tarefa>("select * from tarefas");
+            }
         }
     }
 }
