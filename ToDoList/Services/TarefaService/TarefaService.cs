@@ -24,7 +24,7 @@ namespace ToDoList.Services.TarefaService
         {
             using(var con = new SqlConnection(getConnection))
             {
-                var sql = "select * from Tarefas";
+                var sql = "SELECT * FROM Tarefas ORDER BY conclusao ASC";
                 return await con.QueryAsync<Tarefa>(sql);
             }
         }
