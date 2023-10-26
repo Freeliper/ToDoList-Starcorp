@@ -29,9 +29,13 @@ namespace ToDoList.Services.TarefaService
             }
         }
 
-        public Task<Tarefa> GetTarefaById(int tarefaId)
+        public async Task<Tarefa> GetTarefaById(int tarefaId)
         {
-            throw new NotImplementedException();
+            using (var con = new SqlConnection(getConnection))
+            {
+                var sql = "select * from Tarefas where id= @Id";
+                return await con.QueryFirstOrDefaultAsync<Tarefa>(sql, new { Id = tarefaId });
+            }
         }
 
         public Task<IEnumerable<Tarefa>> UpdateTarefa(Tarefa tarefa)

@@ -29,6 +29,17 @@ namespace ToDoList.Controllers
             return Ok(tarefas);
         }
 
+        [HttpGet("{tarefaId}")]
+        public async Task<ActionResult<Tarefa>> GetTarefaById(int tarefaId)
+        {
+            Tarefa tarefa = await _tarefaInterface.GetTarefaById(tarefaId);
+
+            if(tarefa == null)
+            {
+                return NotFound("Registro não localizado!");
+            }
+            return Ok(tarefa);
+        }
 
 
     }
