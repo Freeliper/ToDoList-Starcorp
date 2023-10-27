@@ -30,7 +30,7 @@ namespace ToDoList.Services.TarefaService
         {
             using(var con = new SqlConnection(getConnection))
             {
-                var sql = "SELECT * FROM Tarefas WHERE concluida = 'false' ORDER BY conclusao ASC";
+                var sql = "select * from Tarefas where concluida = 'false' order by conclusao asc";
                 return await con.QueryAsync<Tarefa>(sql);
             }
         }
