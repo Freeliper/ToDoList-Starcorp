@@ -26,11 +26,26 @@ namespace ToDoList.Services.TarefaService
             }
         }
 
-        public async Task<IEnumerable<Tarefa>> GetAllTarefas()
+        public async Task<IEnumerable<Tarefa>> GetAllTarefas(bool? concluida)
         {
             using(var con = new SqlConnection(getConnection))
             {
-                var sql = "select * from Tarefas where concluida = 'false' order by conclusao asc";
+                // var sql = "select * from Tarefas where concluida = 'false' order by conclusao asc";
+                string sql = "";
+                if (concluida != null && concluida == false)
+                {
+                     sql = "select * from Tarefas where concluida = 'false' order by conclusao asc";
+                }
+                else if (concluida != null && concluida != false)
+                {
+                    sql = "select * from Tarefas where concluida = 'true' order by conclusao asc";
+                }
+                else
+                {
+                    sql = "select * from Tarefas order by conclusao asc";
+                }
+
+
                 return await con.QueryAsync<Tarefa>(sql);
             }
         }

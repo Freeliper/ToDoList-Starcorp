@@ -17,9 +17,9 @@ namespace ToDoList.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tarefa>>> GetAllTarefas()
+        public async Task<ActionResult<IEnumerable<Tarefa>>> GetAllTarefas(bool? concluida)
         {
-            IEnumerable<Tarefa> tarefas = await _tarefaInterface.GetAllTarefas();
+            IEnumerable<Tarefa> tarefas = await _tarefaInterface.GetAllTarefas(concluida);
 
             if(!tarefas.Any())
             {
