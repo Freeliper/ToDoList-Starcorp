@@ -11,3 +11,4 @@ CREATE TABLE Tarefas
     conclusao NVARCHAR(50),
     concluida BIT
 );
+
