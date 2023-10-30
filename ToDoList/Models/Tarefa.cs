@@ -6,7 +6,7 @@
         public int Id { get; set; }
         public string tarefa { get; set; } = string.Empty;
         public string conclusao { get; set; } = string.Empty;
-        public string concluida { get; set; } = "false";
+        public bool concluida { get; set; } = false;
 
     }
 }

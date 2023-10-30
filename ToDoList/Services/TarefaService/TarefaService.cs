@@ -19,7 +19,7 @@ namespace ToDoList.Services.TarefaService
         {
             using(var con= new SqlConnection(getConnection))
             {
-                var sql = "insert into Tarefas (tarefa, conclusao) values (@tarefa, @conclusao)";
+                var sql = "insert into Tarefas (tarefa, conclusao, concluida) values (@tarefa, @conclusao, @concluida)";
                 await con.ExecuteAsync(sql, tarefa);
 
                 return await con.QueryAsync<Tarefa>("select * from Tarefas");
