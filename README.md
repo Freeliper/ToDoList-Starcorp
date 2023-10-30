@@ -19,6 +19,6 @@ Antes de executar a aplicação, verifique se você possui o seguinte instalado:
     "DefaultConnection": "sua-string-de-conexao-aqui"
 }
 
-3. Execute a query contida na pasta CriarBanco.tt em seu sql server
+3. Execute a query contida na pasta CriarBanco.txt em seu sql server
 
 4. Agora basta apenas executar a aplicação, pode testa-la usando swagger ou postman
