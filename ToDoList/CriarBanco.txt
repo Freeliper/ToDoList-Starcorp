@@ -1,0 +1,13 @@
+﻿CREATE DATABASE Tarefas;
+GO
+
+USE Tarefas;
+GO
+
+CREATE TABLE Tarefas
+(
+    Id INT IDENTITY(1,1) NOT NULL,
+    tarefa NVARCHAR(255) NOT NULL,
+    conclusao NVARCHAR(50),
+    concluida BIT
+);
